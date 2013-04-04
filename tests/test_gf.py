@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from pygf.gf import GrowthForecast
-from pygf.spec import *
+from pygf import *
 import unittest
 
 
@@ -49,7 +48,3 @@ class TestGrowthForecast(unittest.TestCase):
         loc = self.gf.add_complex('foo', 'bar', 'complex1', 'tests', False, 19, 'AREA', 'gauge', False, [1, 2])
         self.assertIsInstance(loc, basestring)
         self.assertTrue('/list/foo/bar' in loc)
-
-
-if __name__ == '__main__':
-    unittest.main()
