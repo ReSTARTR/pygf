@@ -11,8 +11,8 @@ pygf has same methods of [rb-growthforecast](https://github.com/tagomoris/rb-gro
 ### instantiate
 
 ```python
-from pygf import GrowthForecast
-gf = GrowthForecast('hostname', 5125)
+import pygf
+gf = pygf.GrowthForecast('hostname', 5125)
 ```
 
 ### post
@@ -78,7 +78,7 @@ TODO
 ```python
 gf.add_graph('example', 'test', 'graph1')
 
-spec = gf.Graph({'service_name': 'example', 'section_name': 'test', 'graph_name': 'graph2'})
+spec = pygf.Graph({'service_name': 'example', 'section_name': 'test', 'graph_name': 'graph2'})
 g.add(spec)
 ```
 
@@ -89,7 +89,7 @@ gf.add_complex('example', 'test', 'summary1', 'testing...', True, 0, 'AREA', 'ga
 
 # or
 
-spec = gf.Complex({'service_name': 'example', 'section_name': 'test', 'graph_name': 'summary2',
+spec = pygf.Complex({'service_name': 'example', 'section_name': 'test', 'graph_name': 'summary2',
                    'description': 'testing...', 'sumup': True,
                    'data': map(lambda id: {'graph_name': id, 'type': 'AREA', 'gmode': 'gauge', 'stack': True}, graph_id_list)})
 
