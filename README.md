@@ -11,8 +11,8 @@ pygf has same methods of [rb-growthforecast](https://github.com/tagomoris/rb-gro
 ### instantiate
 
 ```python
-from pygf import GrowthForecast
-gf = GrowthForecast('hostname', 5125)
+import pygf
+gf = pygf.GrowthForecast('hostname', 5125)
 ```
 
 ### post
