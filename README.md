@@ -6,7 +6,7 @@ GrowthForecast API client written in python
 Usage:
 ----
 
-compatible with (rb-growthforecast)[https://github.com/tagomoris/rb-growthforecast]
+compatible with [rb-growthforecast](https://github.com/tagomoris/rb-growthforecast)
 
 ### post
 
