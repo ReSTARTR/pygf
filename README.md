@@ -47,7 +47,7 @@ glist[0]['section_name']
 glist[0]['graph_name']
 glist[0].is_complex  #=> False
 
-graph = gf.graph(graphs[0]['id'])  #=> instance of pygf.Graph
+graph = gf.graph(glist[0]['id'])  #=> instance of pygf.Graph
 graph['id']
 graph['service_name']
 graph['section_name']
