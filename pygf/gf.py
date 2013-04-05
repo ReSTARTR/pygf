@@ -43,13 +43,16 @@ class GrowthForecast(object):
                 return Complex(d['data'])
             return Graph(d['data'])
 
-    def all(self):
+    def __iter__(self):
         res = requests.get(self.url('/json/list/all'))
         for spec in res.json():
             if spec['complex']:
                 yield Complex(spec)
             else:
                 yield Graph(spec)
+
+    def all(self):
+        return list(iter(self))
 
     def __len__(self):
         return len(list(self.all()))

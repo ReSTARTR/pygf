@@ -24,6 +24,7 @@ class TestGrowthForecast(unittest.TestCase):
         graph2 = self.gf.post('foo', 'bar', 'baz2', 1)
 
         self.assertEqual(len(self.gf), 2)
+        self.assertIsInstance(self.gf.all(), list)
         for graph in self.gf.all():
             self.assertIsInstance(graph, Graph)
 
