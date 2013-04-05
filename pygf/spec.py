@@ -20,30 +20,40 @@ class BaseDict(dict):
         if isinstance(data, basestring):
             data = json.loads(data)
 
-        for k in data:
-            dict.__setitem__(self, k, data[k])
+        for k, v in self._attrs.items():
+            if self._has_default(k):
+                self.__setitem__(k, self._get_default(k))
+            if k in data:
+                self.__setitem__(k, data[k])
+
+    def _has_default(self, k):
+        return k in self._attrs \
+               and 'default' in self._attrs[k]
+
+    def _get_default(self, k):
+        return self._attrs.get(k, {}).get('default')
+
+    def _has_type(self, k):
+        return k in self._attrs \
+                and 'type' in self._attrs[k]
+
+    def _get_type(self, k):
+        return self._attrs.get(k, {}).get('type')
 
     def _to_type(self, k, v):
-        if v and k in self._attrs:
-            t = self._attrs[k].get('type')
-            if t:
-                return t(v)
-        return v
-
-    def _to_v(self, k, v):
-        if self._attrs.get(k, {}).get('default'):
-            return v or self._attrs[k]['default']
+        if v is None:
+            return v
+        if self._has_type(k):
+            return self._get_type(k)(v)
         return v
 
     def __setitem__(self, k, v):
-        v = self._to_type(k, v)
-        v = self._to_v(k, v)
-        return dict.__setitem__(self, k, v)
+        if not k in self._attrs:
+            raise KeyError
+        return dict.__setitem__(self, k, self._to_type(k, v))
 
-    def __getitem__(self, k):
-        v = dict.get(self, k)
-        v = self._to_type(k, self._to_v(k, v))
-        return v
+    def __contains__(self, k):
+        return k in self._attrs
 
     def to_json(self):
         for k, v in self._attrs.items():
