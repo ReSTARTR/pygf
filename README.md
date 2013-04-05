@@ -3,6 +3,21 @@ pygf
 
 GrowthForecast API client written in python
 
+Install:
+----
+
+```
+pip install https://github.com/ReSTARTR/pygf/archive/master.zip
+```
+
+or
+
+```
+git clone git://github.com/ReSTARTR/pygf.git
+cd pygf
+python setup.py install
+```
+
 Usage:
 ----
 
@@ -25,12 +40,12 @@ spec  #=> instance of pygf.Graph
 ### get
 
 ```python
-graphs = gf.graphs():
-graphs[0]['id']
-graphs[0]['service_name']
-graphs[0]['section_name']
-graphs[0]['graph_name']
-graphs[0].is_complex  #=> False
+glist = gf.graphs()
+glist[0]['id']
+glist[0]['service_name']
+glist[0]['section_name']
+glist[0]['graph_name']
+glist[0].is_complex  #=> False
 
 graph = gf.graph(graphs[0]['id'])  #=> instance of pygf.Graph
 graph['id']
@@ -58,7 +73,7 @@ complex.is_complex  #=> True
 for item in complex.data:
     graph = gf.graph(item['graph_id']).
 
-l = gf.all()
+l = gf.all()  #=> list of specs
 
 tree = gf.tree()
 tree['service_name']['section_name']['graph_name']  #=> instance of pygf.Graph
